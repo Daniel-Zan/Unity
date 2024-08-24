@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tacos : MonoBehaviour
@@ -26,7 +24,7 @@ public class Tacos : MonoBehaviour
                 Interact();
             }
         }
-        
+
     }
 
 
@@ -48,5 +46,4 @@ public class Tacos : MonoBehaviour
             GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 50, 200, 50), interactMessage);
         }
     }
-
 }

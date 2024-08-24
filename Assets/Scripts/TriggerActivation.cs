@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class TriggerActivation : MonoBehaviour
 {
@@ -11,9 +13,8 @@ public class TriggerActivation : MonoBehaviour
         public string subtitle;
     }
 
-    public Text subtitleText;
+    public TMP_Text subtitleText; // Cambia a TMP_Text
     public List<TriggerSubtitle> triggerSubtitles = new List<TriggerSubtitle>();
-    private int currentSubtitleIndex = 0;
 
     void Start()
     {
@@ -28,7 +29,7 @@ public class TriggerActivation : MonoBehaviour
             // Buscar el trigger actual en la lista de triggerSubtitles
             foreach (TriggerSubtitle triggerSubtitle in triggerSubtitles)
             {
-                if (triggerSubtitle.triggerCollider == other)
+                if (triggerSubtitle.triggerCollider == GetComponent<Collider>())
                 {
                     // Mostrar el subtítulo asociado al trigger
                     subtitleText.text = triggerSubtitle.subtitle;
