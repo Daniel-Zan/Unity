@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 5f;
 
     private Rigidbody rb;
     public Transform CameraTransform;
@@ -30,17 +29,7 @@ public class PlayerMovement : MonoBehaviour
         newVelocity.y = rb.velocity.y; // Mantener la componente vertical de la velocidad
 
         rb.velocity = newVelocity;
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
     }
-    private void Jump()
-    {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-    }
-
 
     public void SetInteractableObject(ObjInteract intObj)
     {
