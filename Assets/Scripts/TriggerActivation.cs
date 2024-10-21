@@ -11,8 +11,11 @@ public class TriggerActivation : MonoBehaviour
     {
         public Collider triggerCollider;
         public string subtitle;
+        public bool showOnce;  // Si el subtítulo debe mostrarse solo una vez
+        [HideInInspector] public bool hasBeenShown = false;
+        public Collider previousTrigger;
     }
-
+    public Image fondito;
     public TMP_Text subtitleText; // Cambia a TMP_Text
     public List<TriggerSubtitle> triggerSubtitles = new List<TriggerSubtitle>();
 
@@ -31,9 +34,24 @@ public class TriggerActivation : MonoBehaviour
             {
                 if (triggerSubtitle.triggerCollider == GetComponent<Collider>())
                 {
-                    // Mostrar el subtítulo asociado al trigger
-                    subtitleText.text = triggerSubtitle.subtitle;
-                    subtitleText.gameObject.SetActive(true);
+                    // Comprobar si el trigger anterior ha sido activado o si no hay trigger anterior
+                    if (triggerSubtitle.previousTrigger == null || triggerSubtitle.previousTrigger.GetComponent<TriggerActivation>().HasBeenTriggered())
+                    {
+                        // Comprobar si el subtítulo ya fue mostrado si "showOnce" está activado
+                        if (!triggerSubtitle.hasBeenShown)
+                        {
+                            // Mostrar el subtítulo
+                            subtitleText.text = triggerSubtitle.subtitle;
+                            fondito.gameObject.SetActive(true);
+                            subtitleText.gameObject.SetActive(true);
+
+                            // Si el subtítulo solo se debe mostrar una vez, marcarlo como mostrado
+                            if (triggerSubtitle.showOnce)
+                            {
+                                triggerSubtitle.hasBeenShown = true;
+                            }
+                        }
+                    }
                     break;
                 }
             }
@@ -46,6 +64,21 @@ public class TriggerActivation : MonoBehaviour
         {
             // Ocultar los subtítulos al salir del trigger
             subtitleText.gameObject.SetActive(false);
+            fondito.gameObject.SetActive(false);
         }
     }
+
+    // Método para verificar si este trigger ha sido activado antes
+    public bool HasBeenTriggered()
+    {
+        foreach (TriggerSubtitle triggerSubtitle in triggerSubtitles)
+        {
+            if (triggerSubtitle.triggerCollider == GetComponent<Collider>())
+            {
+                return triggerSubtitle.hasBeenShown;
+            }
+        }
+        return false;
+    }
+
 }
