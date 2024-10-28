@@ -11,6 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform CameraTransform;
     private ObjInteract CurrentObjInteract;
 
+    //Pisadas
+    public AudioSource pasos;
+    private bool Hactivo;
+    private bool Vactivo;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,6 +34,34 @@ public class PlayerMovement : MonoBehaviour
         newVelocity.y = rb.velocity.y; // Mantener la componente vertical de la velocidad
 
         rb.velocity = newVelocity;
+
+    //Sonido de movimiento
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            Hactivo = true;
+            pasos.Play();
+        }
+        if (Input.GetButtonDown("Vertical"))
+        {
+            Vactivo = true;
+            pasos.Play();
+        }
+        if (Input.GetButtonUp("Horizontal"))
+        {
+            Hactivo = false;
+            if (Vactivo == false)
+            {
+                pasos.Pause();
+            }
+        }
+        if (Input.GetButtonUp("Vertical"))
+        {
+            Vactivo = false;
+            if (Hactivo == false)
+            {
+                pasos.Pause();
+            }
+        }
     }
 
     public void SetInteractableObject(ObjInteract intObj)
