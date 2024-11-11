@@ -412,6 +412,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 164c33bc918d2b949bad86e58594219c, type: 3}
   m_PrefabInstance: {fileID: 24416555}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &35660167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 35660168}
+  - component: {fileID: 35660171}
+  - component: {fileID: 35660170}
+  - component: {fileID: 35660169}
+  m_Layer: 0
+  m_Name: Cube (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &35660168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35660167}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.787, y: 5.591, z: -1.038}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1505901446}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &35660169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35660167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d16e2476b873ed84fb245375cac4a15d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorText: {fileID: 248076684}
+  floorName: "Piso 3: Salas MAC, salas de inform\xE1tica, sala de profesores"
+--- !u!65 &35660170
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35660167}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.11, y: 0.95, z: 1.39}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &35660171
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35660167}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &36950197
 GameObject:
   m_ObjectHideFlags: 0
@@ -3544,7 +3613,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6, y: 294}
+  m_AnchoredPosition: {x: -6, y: 273}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &248076684
@@ -6446,97 +6515,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &558237320
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 558237321}
-  - component: {fileID: 558237324}
-  - component: {fileID: 558237323}
-  - component: {fileID: 558237322}
-  - component: {fileID: 558237326}
-  m_Layer: 0
-  m_Name: T11
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &558237321
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558237320}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.324, y: 8.233, z: 7.302}
-  m_LocalScale: {x: 0.75, y: 1, z: 1.53}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1416287993}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &558237322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558237320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f54eaa005efb7d4ab4ad9febb939ad7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fondito: {fileID: 696307495}
-  subtitleText: {fileID: 940907762}
-  triggerSubtitles:
-  - triggerCollider: {fileID: 558237323}
-    subtitle: "Hola muchacho, \xBFVienes por una sala? \xBFPrimero hazme un favor
-      y prende las luces del segundo piso, quieres? Solo tienes que mover los tacos
-      que hay en la entrada"
-    showOnce: 1
-    hasBeenShown: 0
-    previousTrigger: {fileID: 1197253792}
---- !u!65 &558237323
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558237320}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.08, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &558237324
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558237320}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &558237326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558237320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e89fb232c6339a4faf6eb7fb4834f36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newObjective: Enciende las luces en el piso 2
 --- !u!1 &559394938
 GameObject:
   m_ObjectHideFlags: 0
@@ -11543,8 +11521,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284572159
-  m_fontColor: {r: 1, g: 0.3820755, b: 0.3820755, a: 1}
+    rgba: 4294311789
+  m_fontColor: {r: 0.4292453, g: 1, b: 0.9595142, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -16510,6 +16488,83 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389505120}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1399307567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1399307571}
+  - component: {fileID: 1399307570}
+  - component: {fileID: 1399307568}
+  - component: {fileID: 1399307569}
+  m_Layer: 0
+  m_Name: T10 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!65 &1399307568
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399307567}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.27, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1399307569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399307567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f54eaa005efb7d4ab4ad9febb939ad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fondito: {fileID: 696307495}
+  subtitleText: {fileID: 940907762}
+  triggerSubtitles:
+  - triggerCollider: {fileID: 1399307568}
+    subtitle: "Hola muchacho, \xBFVienes por una sala? \xBFPrimero hazme un favor
+      y prende las luces del segundo piso, quieres? Solo tienes que mover los tacos
+      que hay en la entrada"
+    showOnce: 1
+    hasBeenShown: 0
+    previousTrigger: {fileID: 1197253792}
+--- !u!33 &1399307570
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399307567}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1399307571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399307567}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.299, y: 8.233, z: 7.312}
+  m_LocalScale: {x: 1.81, y: 1, z: 1.63}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1416287993}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1408827409
 GameObject:
   m_ObjectHideFlags: 0
@@ -16646,7 +16701,7 @@ Transform:
   - {fileID: 236666122}
   - {fileID: 926792184}
   - {fileID: 1197253790}
-  - {fileID: 558237321}
+  - {fileID: 1399307571}
   - {fileID: 1500851334}
   - {fileID: 291320538}
   - {fileID: 1417211814}
@@ -17641,7 +17696,7 @@ MonoBehaviour:
     subtitle: "Aqu\xED debe ser, voy a prenderlas y a entrar para comprobar"
     showOnce: 1
     hasBeenShown: 0
-    previousTrigger: {fileID: 558237323}
+    previousTrigger: {fileID: 1399307568}
 --- !u!65 &1500851336
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17818,8 +17873,8 @@ Transform:
   - {fileID: 1384169449}
   - {fileID: 1598586093}
   - {fileID: 387871642}
-  - {fileID: 1941150918}
   - {fileID: 1571425761}
+  - {fileID: 35660168}
   m_Father: {fileID: 1466623276}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18338,7 +18393,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1505901446}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1571425762
 MonoBehaviour:
@@ -19904,7 +19959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f54eaa005efb7d4ab4ad9febb939ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fondito: {fileID: 1988319647}
+  fondito: {fileID: 696307495}
   subtitleText: {fileID: 940907762}
   triggerSubtitles:
   - triggerCollider: {fileID: 1667423697}
@@ -22569,79 +22624,6 @@ Transform:
   m_Father: {fileID: 1466623276}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1941150917
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1941150918}
-  - component: {fileID: 1941150921}
-  - component: {fileID: 1941150920}
-  - component: {fileID: 1941150919}
-  m_Layer: 0
-  m_Name: Cube (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &1941150918
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1941150917}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.787, y: 5.476, z: -0.83}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1505901446}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1941150919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1941150917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d16e2476b873ed84fb245375cac4a15d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floorText: {fileID: 248076684}
-  floorName: "Piso 3: Sala MAC, salas de inform\xE1tica, salas de profesorespublic
-    Tacos tacos;  // Referencia al script Tacos      private void OnTriggerEnter(Collider
-    other)     {         if (other.CompareTag(\"Player\"))         {            
-    // Llamar al m\xE9todo TriggerPassed del script Tacos             tacos.TriggerPassed();        
-    }     }"
---- !u!65 &1941150920
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1941150917}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.11, y: 0.95, z: 1.39}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &1941150921
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1941150917}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1953249424
 GameObject:
   m_ObjectHideFlags: 0
