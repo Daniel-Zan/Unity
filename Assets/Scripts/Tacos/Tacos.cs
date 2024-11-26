@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class Tacos : MonoBehaviour
 {
-    public Light[] lightsToActivate;  // Array para las luces que se encenderán
-    public float activationRange = 2f;
+    public Light[] lightsToActivate; // Array para las luces que se encenderán
     private string interactMessage = "Presiona 'E' para interactuar";
-    private GameObject player;
-    private bool canInteract = false;  // Solo será true cuando se pase por el trigger
+    private bool canInteract = false; // Control de si el jugador está dentro del trigger
+    private bool isShowingMessage = false; // Para evitar mensajes repetidos
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player"); // Buscar el jugador por etiqueta
+        // Asegurarnos de que las luces específicas estén apagadas al inicio
         foreach (Light light in lightsToActivate)
         {
             light.gameObject.SetActive(false);
@@ -19,49 +18,55 @@ public class Tacos : MonoBehaviour
 
     void Update()
     {
-        // Solo permitir la interacción si canInteract es verdadero
-        if (canInteract && Vector3.Distance(player.transform.position, transform.position) <= activationRange)
+        if (canInteract && !isShowingMessage)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Interact();
-            }
+            // Mostrar el mensaje cuando se está en el trigger y aún no se ha interactuado
+            isShowingMessage = true;
         }
-    }
 
-    private void Interact()
-    {
-        // Activar las luces
-        foreach (Light light in lightsToActivate)
+        // Detectar si el jugador presiona la tecla 'E'
+        if (canInteract && Input.GetKeyDown(KeyCode.E))
         {
-            light.gameObject.SetActive(true);
+            Interact();
         }
     }
 
     void OnGUI()
     {
-        // Crear un estilo para el texto
-        GUIStyle style = new GUIStyle(GUI.skin.label);
-        style.fontSize = 24; // Cambia el tamaño de la fuente aquí
-        style.normal.textColor = Color.white; // Cambia el color del texto si lo deseas
-
-        // Verificar si el jugador está dentro del rango de activación y puede interactuar
-        if (canInteract)
+        // Mostrar el mensaje solo si el jugador puede interactuar y no ha interactuado aún
+        if (isShowingMessage)
         {
-            // Mostrar el mensaje de interacción en la pantalla
-            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 50, 200, 50), interactMessage, style);
+            GUIStyle style = new GUIStyle(GUI.skin.label)
+            {
+                fontSize = 36,
+                normal = { textColor = Color.white }
+            };
+
+            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 100, 200, 50), interactMessage, style);
         }
     }
 
-    // Este método se llamará desde otro script cuando el jugador pase por un trigger específico
-    public void TriggerPassed()
+    private void Interact()
     {
-        canInteract = true;  // Permitir que el jugador interactúe
+        // Activar solo las luces específicas cuando el jugador interactúe
+        foreach (Light light in lightsToActivate)
+        {
+            light.gameObject.SetActive(true);
+        }
+
+        // Ocultar el mensaje después de interactuar
+        isShowingMessage = false;
     }
 
-    // Método para desactivar la interacción
+    // Estos métodos son llamados por el trigger
+    public void TriggerPassed()
+    {
+        canInteract = true;
+    }
+
     public void DisableInteraction()
     {
-        canInteract = false;  // Desactivar la interacción
+        canInteract = false;
+        isShowingMessage = false; // Asegurarse de que el mensaje desaparezca cuando el jugador ya no pueda interactuar
     }
 }

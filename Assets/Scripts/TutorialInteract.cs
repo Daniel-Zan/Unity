@@ -9,6 +9,7 @@ public class TutorialInteract : MonoBehaviour
 
     private bool playerInRange = false; // Si el jugador está en rango para interactuar
     private Transform player; // Referencia al jugador
+    private bool hasInteracted = false; // Si ya se ha interactuado
 
     void Start()
     {
@@ -23,9 +24,9 @@ public class TutorialInteract : MonoBehaviour
         // Comprobar la distancia entre el jugador y el objeto interactuable
         float distance = Vector3.Distance(player.position, transform.position);
 
-        if (distance <= interactionDistance)
+        if (distance <= interactionDistance && !hasInteracted)
         {
-            // Mostrar el mensaje de interacción si el jugador está cerca
+            // Mostrar el mensaje de interacción si el jugador está cerca y aún no ha interactuado
             interactMessage.SetActive(true);
             playerInRange = true;
 
@@ -37,7 +38,7 @@ public class TutorialInteract : MonoBehaviour
         }
         else
         {
-            // Ocultar el mensaje si el jugador está lejos
+            // Ocultar el mensaje si el jugador está lejos o ya interactuó
             interactMessage.SetActive(false);
             playerInRange = false;
         }
@@ -48,6 +49,8 @@ public class TutorialInteract : MonoBehaviour
     {
         // Aquí va lo que debe pasar cuando se interactúa
         Debug.Log("Has interactuado con la esfera!");
+        hasInteracted = true; // Marcar como interactuado
+        interactMessage.SetActive(false); // Ocultar el mensaje de interacción
         // Puedes poner alguna acción específica aquí, como abrir una puerta o recoger un objeto
     }
 }

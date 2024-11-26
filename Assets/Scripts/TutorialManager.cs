@@ -8,6 +8,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject[] tutorialSteps; // Arreglo de paneles de tutorial (instrucciones)
     public int currentStep = 0; // Paso actual del tutorial
     public string nextLevelName; // Nombre del nivel real para cargar al terminar
+    public MonoBehaviour playerMovementScript; // Referencia al script que controla el movimiento del jugador
 
     void Start()
     {
@@ -20,7 +21,7 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        // Si es el primer paso, esperar a que el jugador se mueva
+        // Si es el primer paso, esperar a que el jugador mueva el ratón
         if (currentStep == 0)
         {
             if (DetectMouseMovement())
@@ -28,7 +29,7 @@ public class TutorialManager : MonoBehaviour
                 NextStep();
             }
         }
-        // Si es el segundo paso, esperar a que el jugador interactúe (por ejemplo, presionar 'E')
+        // Si es el segundo paso, esperar a que el jugador use las teclas de movimiento
         else if (currentStep == 1)
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
@@ -36,7 +37,6 @@ public class TutorialManager : MonoBehaviour
                 NextStep();
             }
         }
-
         else if (currentStep == 2)
         {
             if (Input.GetKeyDown(KeyCode.E)) // Cambia 'E' por la tecla de interacción que estés usando
@@ -44,9 +44,13 @@ public class TutorialManager : MonoBehaviour
                 NextStep();
             }
         }
-
         else if (currentStep == 3)
         {
+            // Desactivar el movimiento del jugador y esperar
+            if (playerMovementScript != null)
+            {
+                playerMovementScript.enabled = false; // Desactiva el movimiento
+            }
             StartCoroutine(WaitAndProceed(5f)); // Esperar 5 segundos antes de avanzar al siguiente paso
         }
 
@@ -54,7 +58,6 @@ public class TutorialManager : MonoBehaviour
         {
             SkipTutorial();
         }
-        // Añadir más pasos según sea necesario
     }
 
     IEnumerator WaitAndProceed(float waitTime)
@@ -68,6 +71,7 @@ public class TutorialManager : MonoBehaviour
         // Proceder al siguiente paso
         NextStep();
     }
+
     public void NextStep()
     {
         // Desactivar el paso actual
@@ -83,6 +87,12 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
+            // Reactivar el movimiento del jugador si es necesario
+            if (currentStep != 3 && playerMovementScript != null)
+            {
+                playerMovementScript.enabled = true;
+            }
+
             // Activar el siguiente paso
             tutorialSteps[currentStep].SetActive(true);
         }
@@ -90,7 +100,7 @@ public class TutorialManager : MonoBehaviour
 
     public void SkipTutorial()
     {
-            LoadNextLevel(); // Cargar el siguiente nivel si se salta el tutorial
+        LoadNextLevel(); // Cargar el siguiente nivel si se salta el tutorial
     }
 
     void LoadNextLevel()

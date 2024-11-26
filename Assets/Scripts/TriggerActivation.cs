@@ -15,14 +15,24 @@ public class TriggerActivation : MonoBehaviour
         [HideInInspector] public bool hasBeenShown = false;
         public Collider previousTrigger;
     }
+
     public Image fondito;
     public TMP_Text subtitleText; // Cambia a TMP_Text
     public List<TriggerSubtitle> triggerSubtitles = new List<TriggerSubtitle>();
+
+    // Referencia al componente de movimiento del jugador (asume que tienes un componente PlayerMovement)
+    public GameObject player;
+    private PlayerMovement playerMovement; // Suponiendo que el jugador tiene un script PlayerMovement
+
+    private bool isMovementDisabled = false; // Bandera para saber si el movimiento ha sido deshabilitado
 
     void Start()
     {
         // Inicialmente, desactivar los subtítulos
         subtitleText.gameObject.SetActive(false);
+
+        // Obtener el componente de movimiento del jugador (ajusta esto según tu implementación)
+        playerMovement = player.GetComponent<PlayerMovement>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,6 +60,7 @@ public class TriggerActivation : MonoBehaviour
                             {
                                 triggerSubtitle.hasBeenShown = true;
                             }
+
                         }
                     }
                     break;
@@ -80,5 +91,6 @@ public class TriggerActivation : MonoBehaviour
         }
         return false;
     }
+
 
 }
