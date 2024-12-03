@@ -45,7 +45,12 @@ public class Exit : MonoBehaviour
         {
             exitCanvas.gameObject.SetActive(true); // Mostrar el canvas
         }
-        StartCoroutine(WaitAndExit()); // Esperar 5 segundos antes de salir
+
+        // Pausar el tiempo mientras se muestra el canvas
+        Time.timeScale = 0f;
+
+        // Iniciar la corrutina para esperar y luego salir
+        StartCoroutine(WaitAndExit());
     }
 
     private void HideExitCanvas()
@@ -58,8 +63,11 @@ public class Exit : MonoBehaviour
 
     private IEnumerator WaitAndExit()
     {
-        // Esperar 5 segundos
-        yield return new WaitForSeconds(5);
+        // Como Time.timeScale es 0, usar tiempo real para esperar
+        yield return new WaitForSecondsRealtime(5);
+
+        // Restablecer la escala de tiempo antes de cargar el menú
+        Time.timeScale = 1f;
 
         // Después de 5 segundos, cargar el menú
         LoadMainMenu();
@@ -67,6 +75,12 @@ public class Exit : MonoBehaviour
 
     private void LoadMainMenu()
     {
+        // Hacer visible el cursor y desbloquearlo
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // Cargar la escena del menú principal
         SceneManager.LoadScene("Menu"); // Cambia "Menu" por el nombre de tu escena de menú
     }
+
 }
