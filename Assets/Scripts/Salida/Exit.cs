@@ -19,25 +19,11 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            // Verifica si el trigger requerido ha sido activado
-            if (requiredTrigger != null && requiredTrigger.GetComponent<TriggerActivation>())
-            {
                 canExit = true; // Permitir salida al menú
                 ShowExitCanvas();
-            }
-        }
+
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            canExit = false; // Desactivar la posibilidad de salir al menú al salir del trigger
-            HideExitCanvas(); // Ocultar el canvas si el jugador sale del trigger
-        }
-    }
 
     private void ShowExitCanvas()
     {
