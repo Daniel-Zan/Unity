@@ -1639,7 +1639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66404af64c2a38043ad8b53be41b3484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 4
   CameraTransform: {fileID: 2092405031}
   pasos: {fileID: 460428819}
 --- !u!4 &777766871
@@ -5282,5 +5282,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcc0547bbff82f44b4e3faa0d20a703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Vel: 300
+  Vel: 225
   Player: {fileID: 777766871}
