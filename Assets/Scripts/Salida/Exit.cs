@@ -1,16 +1,15 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour
 {
     public Collider requiredTrigger; // El trigger que debe ser activado antes
-    public Canvas exitCanvas; // El canvas que se mostrará antes de salir
-    private bool canExit = false; // Marca si se puede salir al menú
+    public Canvas exitCanvas; // El canvas que se mostrará temporalmente
+    private bool canShowMessage = false; // Marca si se puede mostrar el mensaje
 
     private void Start()
     {
-        // Asegúrate de que el canvas esté desactivado al inicio
+        // Asegurarse de que el canvas esté desactivado al inicio
         if (exitCanvas != null)
         {
             exitCanvas.gameObject.SetActive(false);
@@ -19,11 +18,12 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-                canExit = true; // Permitir salida al menú
-                ShowExitCanvas();
-
+        if (!canShowMessage)
+        {
+            canShowMessage = true;
+            ShowExitCanvas();
+        }
     }
-
 
     private void ShowExitCanvas()
     {
@@ -32,41 +32,20 @@ public class Exit : MonoBehaviour
             exitCanvas.gameObject.SetActive(true); // Mostrar el canvas
         }
 
-        // Pausar el tiempo mientras se muestra el canvas
-        Time.timeScale = 0f;
-
-        // Iniciar la corrutina para esperar y luego salir
-        StartCoroutine(WaitAndExit());
+        // Iniciar la corrutina para esperar y luego ocultar el mensaje
+        StartCoroutine(WaitAndHide());
     }
 
-    private void HideExitCanvas()
+    private IEnumerator WaitAndHide()
     {
+        yield return new WaitForSeconds(10); // Esperar 10 segundos
+
+        // Ocultar el canvas
         if (exitCanvas != null)
         {
-            exitCanvas.gameObject.SetActive(false); // Ocultar el canvas si es necesario
+            exitCanvas.gameObject.SetActive(false);
         }
+
+        canShowMessage = false; // Permitir que el mensaje se muestre nuevamente si es necesario
     }
-
-    private IEnumerator WaitAndExit()
-    {
-        // Como Time.timeScale es 0, usar tiempo real para esperar
-        yield return new WaitForSecondsRealtime(5);
-
-        // Restablecer la escala de tiempo antes de cargar el menú
-        Time.timeScale = 1f;
-
-        // Después de 5 segundos, cargar el menú
-        LoadMainMenu();
-    }
-
-    private void LoadMainMenu()
-    {
-        // Hacer visible el cursor y desbloquearlo
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        // Cargar la escena del menú principal
-        SceneManager.LoadScene("Menu"); // Cambia "Menu" por el nombre de tu escena de menú
-    }
-
 }
