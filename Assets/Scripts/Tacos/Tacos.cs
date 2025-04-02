@@ -20,7 +20,8 @@ public class Tacos : MonoBehaviour
 
     void Update()
     {
-        if (canInteract && !isShowingMessage)
+        // Mostrar mensaje solo cuando el jugador esté en el trigger
+        if (canInteract)
         {
             isShowingMessage = true;
         }
@@ -62,16 +63,18 @@ public class Tacos : MonoBehaviour
 
         // Ocultar el mensaje después de interactuar
         isShowingMessage = false;
+        canInteract = false; // Evitar que siga apareciendo el mensaje
     }
 
     public void TriggerPassed()
     {
         canInteract = true;
+        isShowingMessage = true; // Asegurar que el mensaje aparezca al entrar al trigger
     }
 
     public void DisableInteraction()
     {
         canInteract = false;
-        isShowingMessage = false;
+        isShowingMessage = false; // Ocultar mensaje al salir del trigger
     }
 }

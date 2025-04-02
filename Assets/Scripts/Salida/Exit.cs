@@ -3,13 +3,11 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
-    public Collider requiredTrigger; // El trigger que debe ser activado antes
     public Canvas exitCanvas; // El canvas que se mostrará temporalmente
-    private bool canShowMessage = false; // Marca si se puede mostrar el mensaje
+    private bool hasTriggered = false; // Para asegurarse de que solo se active una vez
 
     private void Start()
     {
-        // Asegurarse de que el canvas esté desactivado al inicio
         if (exitCanvas != null)
         {
             exitCanvas.gameObject.SetActive(false);
@@ -18,34 +16,31 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!canShowMessage)
+        if (!hasTriggered && other.CompareTag("Player"))
         {
-            canShowMessage = true;
-            ShowExitCanvas();
+            hasTriggered = true;
+            StartCoroutine(PauseGame());
         }
     }
 
-    private void ShowExitCanvas()
+    private IEnumerator PauseGame()
     {
         if (exitCanvas != null)
         {
-            exitCanvas.gameObject.SetActive(true); // Mostrar el canvas
+            exitCanvas.gameObject.SetActive(true);
         }
 
-        // Iniciar la corrutina para esperar y luego ocultar el mensaje
-        StartCoroutine(WaitAndHide());
-    }
+        Time.timeScale = 0; // Pausar el juego
 
-    private IEnumerator WaitAndHide()
-    {
-        yield return new WaitForSeconds(10); // Esperar 10 segundos
+        yield return new WaitForSecondsRealtime(6); // Esperar 10 segundos en tiempo real
 
-        // Ocultar el canvas
+        Time.timeScale = 1; // Reanudar el juego
+
         if (exitCanvas != null)
         {
             exitCanvas.gameObject.SetActive(false);
         }
 
-        canShowMessage = false; // Permitir que el mensaje se muestre nuevamente si es necesario
+        gameObject.SetActive(false); // Desactivar el trigger
     }
 }
