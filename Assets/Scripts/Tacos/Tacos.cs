@@ -5,13 +5,13 @@ public class Tacos : MonoBehaviour
     public Light[] lightsToActivate; // Luces que se encenderán
     public AudioSource audioSource;  // Componente de audio para el sonido de interacción
 
-    private string interactMessage = "Presiona 'E' para interactuar";
-    private bool canInteract = false; // Control de si el jugador está dentro del trigger
-    private bool isShowingMessage = false; // Para evitar mensajes repetidos
+    private string interactMessage = "Presiona 'E' para encender la luz";
+    private bool canInteract = false; // Si el jugador está dentro del trigger
+    private bool hasInteracted = false; // Para saber si ya se hizo la interacción
 
     void Start()
     {
-        // Asegurarnos de que las luces estén apagadas al inicio
+        // Asegurar que las luces estén apagadas al inicio
         foreach (Light light in lightsToActivate)
         {
             light.gameObject.SetActive(false);
@@ -20,14 +20,7 @@ public class Tacos : MonoBehaviour
 
     void Update()
     {
-        // Mostrar mensaje solo cuando el jugador esté en el trigger
-        if (canInteract)
-        {
-            isShowingMessage = true;
-        }
-
-        // Detectar si el jugador presiona la tecla 'E'
-        if (canInteract && Input.GetKeyDown(KeyCode.E))
+        if (canInteract && !hasInteracted && Input.GetKeyDown(KeyCode.E))
         {
             Interact();
         }
@@ -35,46 +28,48 @@ public class Tacos : MonoBehaviour
 
     void OnGUI()
     {
-        if (isShowingMessage)
+        if (canInteract && !hasInteracted)
         {
             GUIStyle style = new GUIStyle(GUI.skin.label)
             {
                 fontSize = 36,
+                wordWrap = true, // Muy importante para que no se corte
+                alignment = TextAnchor.MiddleCenter,
                 normal = { textColor = Color.white }
             };
 
-            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 100, 200, 50), interactMessage, style);
+            GUI.Label(new Rect(Screen.width / 2 - 300, Screen.height - 200, 500, 200), interactMessage, style);
         }
     }
 
     private void Interact()
     {
-        // Activar luces
+        // Encender las luces
         foreach (Light light in lightsToActivate)
         {
             light.gameObject.SetActive(true);
         }
 
-        // Reproducir sonido si está asignado
+        // Reproducir sonido
         if (audioSource != null)
         {
             audioSource.Play();
         }
 
-        // Ocultar el mensaje después de interactuar
-        isShowingMessage = false;
-        canInteract = false; // Evitar que siga apareciendo el mensaje
+        hasInteracted = true;  // Ya se interactuó, ocultar mensaje
+        canInteract = false;
     }
 
     public void TriggerPassed()
     {
-        canInteract = true;
-        isShowingMessage = true; // Asegurar que el mensaje aparezca al entrar al trigger
+        if (!hasInteracted)
+        {
+            canInteract = true;
+        }
     }
 
     public void DisableInteraction()
     {
         canInteract = false;
-        isShowingMessage = false; // Ocultar mensaje al salir del trigger
     }
 }
