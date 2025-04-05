@@ -653,7 +653,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Presiona WASD para moverte
+  m_text: 'Presiona W para moverte adelante
+
+    Presiona A para moverte a la izquierda
+
+    Presiona
+    S para moverte hacia atras
+
+    Presiona D para moverte a la derecha'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 742d1d1d96ee1244f9205377f131c75c, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -680,8 +687,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
