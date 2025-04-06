@@ -5,10 +5,14 @@ public class Arrows : MonoBehaviour
     public GameObject currentArrowGroup; // Flechas que deben desactivarse al pasar
     public GameObject nextArrowGroup; // Flechas que deben activarse al pasar
 
+    private bool hasActivated = false; // Asegura que solo suceda una vez
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Asegurar que solo el jugador active el trigger
+        if (!hasActivated && other.CompareTag("Player")) // Verifica si ya ocurrió
         {
+            hasActivated = true;
+
             // Desactiva las flechas actuales
             if (currentArrowGroup != null)
             {
