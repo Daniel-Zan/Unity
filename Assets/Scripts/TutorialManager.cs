@@ -10,6 +10,12 @@ public class TutorialManager : MonoBehaviour
     public string nextLevelName; // Nombre del nivel real para cargar al terminar
     public MonoBehaviour playerMovementScript; // Referencia al script que controla el movimiento del jugador
 
+    private bool isWaiting = false; //  NUEVO
+    private bool mouseMoved = false;
+    private bool movementKeysPressed = false;
+
+    public Tacos tacos; // Referencia al script Tacos
+    public GameObject tacosBlocker;
     void Start()
     {
         // Asegurarse de que solo el primer paso esté activo al inicio
@@ -17,41 +23,61 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialSteps[i].SetActive(i == currentStep);
         }
+
+        if (tacos != null)
+        {
+            // Escuchar el evento de interacción
+            tacos.onInteract += OnTacosInteracted;
+            tacos.DisableInteraction();
+
+        }
     }
 
-    void Update()
+        void Update()
     {
-        // Si es el primer paso, esperar a que el jugador mueva el ratón
-        if (currentStep == 0)
+        if (currentStep == 0 && !isWaiting)
+        {
+            isWaiting = true;
+            StartCoroutine(WaitAndProceed(8f));
+        }
+
+        else if (currentStep == 1 && !mouseMoved)
         {
             if (DetectMouseMovement())
             {
-                NextStep();
+                mouseMoved = true;
+                StartCoroutine(WaitAfterAction(3f)); // Espera 3 segundos más después de mover el mouse
             }
         }
-        // Si es el segundo paso, esperar a que el jugador use las teclas de movimiento
-        else if (currentStep == 1)
+
+        else if (currentStep == 2 && !movementKeysPressed)
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
-                NextStep();
+                movementKeysPressed = true;
+                StartCoroutine(WaitAfterAction(5f)); // Espera 3 segundos después de moverse
             }
         }
-        else if (currentStep == 2)
+
+        else if (currentStep == 3 )
         {
-            if (Input.GetKeyDown(KeyCode.E)) // Cambia 'E' por la tecla de interacción que estés usando
+
+            if (tacosBlocker != null)
             {
-                NextStep();
+                tacosBlocker.SetActive(false); // Quitar la barrera
             }
+            
         }
-        else if (currentStep == 3)
+
+
+        else if (currentStep == 4 )
         {
-            // Desactivar el movimiento del jugador y esperar
+            //Desactivar el movimiento del jugador y esperar
             if (playerMovementScript != null)
             {
-                playerMovementScript.enabled = false; // Desactiva el movimiento
+               playerMovementScript.enabled = false; // Desactiva el movimiento
             }
-            StartCoroutine(WaitAndProceed(5f)); // Esperar 5 segundos antes de avanzar al siguiente paso
+            StartCoroutine(WaitAndProceed(8f)); // Esperar 5 segundos antes de avanzar al siguiente paso
         }
 
         if (Input.GetKeyDown(KeyCode.O))
@@ -60,6 +86,12 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+
+    IEnumerator WaitAfterAction(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        NextStep();
+    }
     IEnumerator WaitAndProceed(float waitTime)
     {
         // Mostrar el paso actual
@@ -68,6 +100,7 @@ public class TutorialManager : MonoBehaviour
         // Esperar los segundos que se pasen como parámetro
         yield return new WaitForSeconds(waitTime);
 
+        isWaiting = false;
         // Proceder al siguiente paso
         NextStep();
     }
@@ -113,4 +146,14 @@ public class TutorialManager : MonoBehaviour
     {
         return Mathf.Abs(Input.GetAxis("Mouse X")) > 0.1f || Mathf.Abs(Input.GetAxis("Mouse Y")) > 0.1f;
     }
-}
+
+        void OnTacosInteracted()
+        {
+            // Avanza de paso cuando el jugador interactúa con los tacos en el paso 3
+            if (currentStep == 3)
+            {
+            StartCoroutine(WaitAfterAction(5f));
+            NextStep();
+            }
+        }
+    }

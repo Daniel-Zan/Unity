@@ -6,14 +6,19 @@ using UnityEngine.SceneManagement;
 public class Pausa : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    
     public GameObject pauseMenuUI;
+    public GameObject exitConfirmationPanel;
 
     void Update()
     {
-        // Activar/desactivar el menú de pausa con Escape
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
-            if (GameIsPaused)
+            if (GameIsPaused && exitConfirmationPanel.activeSelf)
+            {
+                CloseExitConfirmation();
+            }
+            else if (GameIsPaused)
             {
                 ResumeGame();
             }
@@ -28,9 +33,10 @@ public class Pausa : MonoBehaviour
     public void ResumeGame()
     {
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f; // Vuelve el tiempo a la normalidad
-        Cursor.lockState = CursorLockMode.Locked; // Oculta y bloquea el cursor en el centro de la pantalla
-        Cursor.visible = false; // Hace invisible el cursor
+        exitConfirmationPanel.SetActive(false);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         GameIsPaused = false;
     }
 
@@ -38,9 +44,10 @@ public class Pausa : MonoBehaviour
     void PauseGame()
     {
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f; // Detiene el tiempo en el juego
-        Cursor.lockState = CursorLockMode.None; // Libera el cursor
-        Cursor.visible = true; // Hace visible el cursor
+        exitConfirmationPanel.SetActive(false);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         GameIsPaused = true;
     }
 
@@ -53,10 +60,29 @@ public class Pausa : MonoBehaviour
         Cursor.visible = false;
     }
 
+    // Mostrar panel de confirmación
+    public void ShowExitConfirmation()
+    {
+        exitConfirmationPanel.SetActive(true);
+    }
+
+    // Cerrar panel de confirmación
+    public void CloseExitConfirmation()
+    {
+        exitConfirmationPanel.SetActive(false);
+    }
+
+    // Salir al menú principal
+    public void ExitToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu"); // Asegúrate de que esta escena esté agregada en el build settings
+    }
+
     // Salir del juego
     public void QuitGame()
     {
         Debug.Log("Saliendo del juego...");
-        Application.Quit(); // Funciona en la build, no en el editor
+        Application.Quit();
     }
 }

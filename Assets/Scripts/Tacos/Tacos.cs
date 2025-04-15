@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class Tacos : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Tacos : MonoBehaviour
     private string interactMessage = "Presiona 'E' para encender la luz";
     private bool canInteract = false; // Si el jugador está dentro del trigger
     private bool hasInteracted = false; // Para saber si ya se hizo la interacción
+
+    public Action onInteract;
 
     void Start()
     {
@@ -24,6 +27,7 @@ public class Tacos : MonoBehaviour
         {
             Interact();
         }
+
     }
 
     void OnGUI()
@@ -58,6 +62,9 @@ public class Tacos : MonoBehaviour
 
         hasInteracted = true;  // Ya se interactuó, ocultar mensaje
         canInteract = false;
+
+        // Llamar a quien esté escuchando el evento (como el TutorialManager)
+        onInteract?.Invoke();
     }
 
     public void TriggerPassed()
@@ -71,5 +78,11 @@ public class Tacos : MonoBehaviour
     public void DisableInteraction()
     {
         canInteract = false;
+    }
+
+    public void EnableInteraction()
+    {
+        canInteract = true;
+        hasInteracted = false; // Por si lo reusás en otra escena
     }
 }

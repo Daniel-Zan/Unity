@@ -20,6 +20,9 @@ public class TriggerObjects : MonoBehaviour
     public bool activateOnce;
     private bool hasActivated;
 
+    // Audio opcional
+    public AudioSource audioSource;
+    public AudioClip triggerSound;
 
     void Start()
     {
@@ -40,6 +43,12 @@ public class TriggerObjects : MonoBehaviour
         subtitleText.text = subtitleMessage;
         subtitleText.gameObject.SetActive(true);
         fondito.gameObject.SetActive(true);
+
+        // Reproducir sonido si está asignado
+        if (audioSource != null && triggerSound != null)
+        {
+            audioSource.PlayOneShot(triggerSound);
+        }
 
         // Si modifica el objetivo, actualizarlo
         if (modifiesObjective && objectiveManager != null)
