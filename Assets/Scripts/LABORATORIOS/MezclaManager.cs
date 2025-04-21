@@ -31,24 +31,31 @@ public class MezclaManager : MonoBehaviour
             { (Tarro.Compuesto.Hidrogeno, Tarro.Compuesto.Ferrium), Color.magenta },
             { (Tarro.Compuesto.Clorina, Tarro.Compuesto.Ferrium), Color.yellow },
             { (Tarro.Compuesto.Hidrogeno, Tarro.Compuesto.Clorina), Color.cyan },
+            { (Tarro.Compuesto.Hidrogeno, Tarro.Compuesto.Hidrogeno), Color.blue },
+            { (Tarro.Compuesto.Clorina, Tarro.Compuesto.Clorina), Color.green },
+            { (Tarro.Compuesto.Ferrium, Tarro.Compuesto.Ferrium), Color.red },
             { (Tarro.Compuesto.Oxigeno, Tarro.Compuesto.Ferrium), new Color(1f, 0.5f, 0.5f) },
             // Agrega más combinaciones según quieras
         };
     }
 
-    public void SeleccionarTarro(Tarro tarro)
+    public bool SeleccionarTarro(Tarro tarro)
     {
-        if (mezclaExplotada) return; // Si la mezcla explotó, no se puede seguir interactuando
+        if (mezclaExplotada) return false;
 
         if (primerSeleccionado == null)
         {
             primerSeleccionado = tarro;
+            return false; // Aún no hay mezcla
         }
         else if (segundoSeleccionado == null && tarro != primerSeleccionado)
         {
             segundoSeleccionado = tarro;
             MezclarCompuestos();
+            return true; // Mezcla realizada
         }
+
+        return false;
     }
 
     private void MezclarCompuestos()
@@ -64,6 +71,7 @@ public class MezclaManager : MonoBehaviour
     (comp1 == Tarro.Compuesto.Oxigeno && comp2 == Tarro.Compuesto.Hidrogeno))
         {
             tarroResultado.GetComponent<Renderer>().material.color = Color.black;
+            UIInteraccion.instancia.MostrarMensaje("¡Explosión! Combinación peligrosa");
 
             if (sonidoExplosion != null && audioSource != null)
                 audioSource.PlayOneShot(sonidoExplosion);

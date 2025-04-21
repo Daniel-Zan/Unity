@@ -11,21 +11,22 @@ public class Informacion : MonoBehaviour
     public GameObject objectToDisable;           // Objeto que se desactivará tras reproducir el audio
     public GameObject mensajePantalla;           // Panel o texto de mensaje (Canvas con TextMeshPro)
 
-    private bool hasPlayed = false;
+    private bool isPlaying = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (hasPlayed || !other.CompareTag("Player"))
+        if (isPlaying || !other.CompareTag("Player"))
             return;
 
-        hasPlayed = true;
+        isPlaying = true;
         playerMovementScript.enabled = false; // Desactivar movimiento
         audioToPlay.Play();
 
         if (mensajePantalla != null)
             mensajePantalla.SetActive(true); // Mostrar el mensaje
 
-        objectToDisable.SetActive(false);
+        if (objectToDisable != null)
+            objectToDisable.SetActive(false);
 
         // Llamar método cuando termine el audio
         Invoke(nameof(EnableMovement), audioToPlay.clip.length);
@@ -36,8 +37,13 @@ public class Informacion : MonoBehaviour
         playerMovementScript.enabled = true; // Reactivar movimiento
 
         if (mensajePantalla != null)
+        {
             mensajePantalla.SetActive(false); // Ocultar el mensaje
+            if (objectToDisable != null)
+                objectToDisable.SetActive(true);
+        }
+            
 
-        gameObject.SetActive(false); // Desactivar el trigger para que no se repita
+        isPlaying = false; // Permitir futuras activaciones
     }
 }

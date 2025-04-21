@@ -20,7 +20,6 @@ public class Tarro : MonoBehaviour
 
     public void Seleccionar()
     {
-        // Si el tarro no puede ser interactuado, no permitir selección
         if (!puedeInteractuar || haExplotado)
             return;
 
@@ -29,7 +28,16 @@ public class Tarro : MonoBehaviour
             audioSource.PlayOneShot(sonidoTarro);
         }
 
-        MezclaManager.Instance.SeleccionarTarro(this);
+        bool fueMezcla = MezclaManager.Instance.SeleccionarTarro(this);
+
+        if (fueMezcla)
+        {
+            UIInteraccion.instancia.MostrarMensaje("Mezcla realizada");
+        }
+        else
+        {
+            UIInteraccion.instancia.MostrarMensaje("Tienes el compuesto " + compuestoActual);
+        }
     }
 
     private void OnMouseDown()

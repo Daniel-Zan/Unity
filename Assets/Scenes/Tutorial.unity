@@ -586,7 +586,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349836766}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 24.32, y: 10.01, z: -33.55}
+  m_LocalPosition: {x: 24.32, y: 9.51, z: -33.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1787,7 +1787,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777766869}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.567, y: 1.71, z: 12.59}
+  m_LocalPosition: {x: 1.567, y: 1.71, z: 13.422}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2828,6 +2828,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7493596028755563170, guid: d0b7a8b374c833648b04910e7b0bde21, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.242
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d0b7a8b374c833648b04910e7b0bde21, type: 3}
       propertyPath: m_Name
       value: EDIFICIOMULTIPLEDOS
@@ -3312,7 +3316,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906820848}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.718, y: -0.26052925, z: -7.1624274}
+  m_LocalPosition: {x: 3.718, y: -0.4967, z: -7.1624274}
   m_LocalScale: {x: 1, y: 0.34325337, z: 0.5457919}
   m_ConstrainProportionsScale: 0
   m_Children:

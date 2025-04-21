@@ -33,7 +33,7 @@ public class InteraccionPorProximidad : MonoBehaviour
             if (!jugadorCerca)
             {
                 jugadorCerca = true;
-                UIInteraccion.instancia.MostrarMensaje("Presiona E para agarrar");
+                UIInteraccion.instancia.MostrarMensaje("Presiona E para seleccionar");
             }
 
             if (Input.GetKeyDown(KeyCode.E))
